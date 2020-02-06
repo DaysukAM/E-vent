@@ -26,6 +26,11 @@ class Event
      */
     private $isOn;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="events")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Event
     public function setIsOn(bool $isOn): self
     {
         $this->isOn = $isOn;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

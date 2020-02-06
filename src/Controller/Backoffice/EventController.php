@@ -7,11 +7,7 @@ use App\Form\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -36,8 +32,7 @@ class EventController extends AbstractController
 
     public function create(Request $request)
     {
-        $event = new event();
-
+        $event = new Event();
 
         $form = $this->createFormBuilder($event)
             ->add('name', TextType::class)
