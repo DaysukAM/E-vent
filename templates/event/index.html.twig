@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventController!{% endblock %}
+
+{% block body %}
+
+
+     {% for event in Events %}
+<table>
+    <tr>
+        <td>
+    {{ event.name }}
+        </td>
+        <td>
+        <a href="{{ path ('event_edit',{'id':event.id}) }}">Modifier</a>
+        </td>
+    </tr>
+</table>
+     {% endfor %}
+
+    <a href="{{ path ('event_create')}}">Créer</a>
+{% endblock %}
