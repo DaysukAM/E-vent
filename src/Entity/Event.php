@@ -27,7 +27,7 @@ class Event
     private $isOn;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
      */
     private $user;
 

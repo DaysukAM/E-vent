@@ -63,15 +63,4 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-    /**
-     * @Route("/userspace", name="userspace")
-     */
-    public function userspace(Request $request)
-    {
-
-
-        return $this->render('user_space/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
 }
