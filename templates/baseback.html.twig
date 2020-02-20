@@ -5,7 +5,7 @@
     <script src="{{ asset('js/materialize.js') }}"></script>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('CSS/style.css') }}"/>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,18 +15,23 @@
 </head>
 <body>
 
-    <nav class="nav-wrapper indigo">
+    <nav class="nav-wrapper red accent-4">
         <div class="container">
-            <a href="#" class="brand-logo">E-Vent</a>
+            <a href="#" class="brand-logo">
+
+                <img class="logo-event " src="{{ asset('img/logo-event.png') }}"/>
+            </a>
             <a href="#" class="sidenav-trigger" data-target="mobile-links">
                 <i class="material-icons">menu</i>
             </a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{{ path('event') }}">Mes évenements</a> </li>
             <li><a href="#">Mon compte</a> </li>
-            <li><a href="#" class="btn-floating indigo darken-4 z-depth-0">
+            <li><a href="#" class="btn-floating red darken-4 z-depth-0">
                     <i class="material-icons">account_circle</i>
-                </a> </li>
+                </a>
+                <span>name</span>
+            </li>
         </ul>
         </div>
     </nav>
@@ -37,79 +42,13 @@
             </a> </li>
         <li><a href="#">Mes évenements</a> </li>
     </ul>
-    <h1>votre espace</h1>
-    <li> test 1 </li>
-    <li> test 2 </li>
 
     <div class="container">
         <h1 class="hide-on-med-and-down indigo lighten-1 yellow-text text-lighten-1">large</h1>
         <h1 class="hide-on-large-only hide-on-small-only indigo lighten-2 yellow-text text-lighten-2">medium</h1>
         <h1 class="hide-on-med-and-up indigo lighten-3 yellow-text text-lighten-3">thin</h1>
     </div>
-    <div class="container">
-        <h1 class="left-align">left</h1>
-        <h1 class="right-align">right</h1>
-        <h1 class="center-align">center</h1>
-    </div>
-    <div class="container" id="button-div">
-        <h1>button</h1>
-        <a href="#" class="btn waves-effect"> button 1</a>
-        <a href="#" class="btn-small"> button 2</a>
-        <a href="#" class="btn-large red waves-effect waves-light"> button 3</a>
-        <a href="#" class="btn disabled"> button 4</a>
-        <a href="#" class="btn-floating red "> button 5</a>
-        <h1>float button</h1>
-        <a href="#" class="btn-floating red pulse"></a>
-    </div>
-    <div class="container" id="icon-div">
-        <h1>icon</h1>
-        <i class="material-icons red-text">3d_rotation</i>
-        <i class="material-icons yellow-text text-darken-3">warning</i>
-        <i class=""></i>
-        <i class=""></i>
 
-        <h1>icon on button</h1>
-        <a href="#" class="btn blue">
-            <span>send</span>
-            <i class="material-icons red-text right">send</i>
-        </a>
-        <a href="#" class="btn pink waves-effect waves-light">
-            <span>Email</span>
-            <i class="material-icons yellow-text darken-3 left">email</i>
-        </a>
-
-        <h1>icon on float button</h1>
-        <a href="#" class="btn-floating blue pulse">
-            <i class="material-icons">add</i>
-        </a>
-        <a href="#" class="btn-floating red pulse">
-            <i class="material-icons">remove</i>
-        </a>
-        <a href="#" class="btn-floating orange pulse">
-        <i class="material-icons">edit</i>
-        </a>
-    </div>
-    <div class="container" id="grid">
-        <h1>grid</h1>
-        <div class="row">
-            <div class="col s3 grey">content</div>
-            <div class="col s3 grey">content</div>
-            <div class="col s3 grey">content</div>
-            <div class="col s3 grey">content</div>
-        </div>
-        <div class="row">
-            <div class="col s6 m3 grey">content</div>
-            <div class="col s6 m3 grey">content</div>
-            <div class="col s6 m3 grey">content</div>
-            <div class="col s6 m3 grey">content</div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6 l1 grey">content</div>
-            <div class="col s12 m6 l1 grey">content</div>
-            <div class="col s12 m6 l1 grey">content</div>
-            <div class="col s12 m6 l1 grey">content</div>
-        </div>
-    </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
