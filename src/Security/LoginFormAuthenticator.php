@@ -85,27 +85,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('userspace'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate('app_login');
-    }
-    /**
-     * @Route("/login", name="app_login")
-     */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
-        ]);
     }
 }
