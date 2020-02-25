@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
+<head>
+    <link rel="stylesheet" href="{{ asset('css/backoffice/materialize.css') }}">
+    <script src="{{ asset('js/materialize.js') }}"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ asset('CSS/style.css') }}"/>
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<nav class="nav-wrapper red accent-4">
+    <div class="container">
+        <a href="#" class="brand-logo">
+
+            <img class="logo-event " src="{{ asset('img/logo-event.png') }}"/>
+        </a>
+        <a href="#" class="sidenav-trigger" data-target="mobile-links">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="btn red waves-effect waves-light" href="{{ path('app_login') }}">Connexion</a> </li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-links">
+    <li><a href="#">Mon compte
+            <i class="material-icons right">account_circle</i>
+        </a> </li>
+    <li><a href="#">Mes évenements</a> </li>
+</ul>
+
+<div class="container">
+    <h1 class="hide-on-med-and-down indigo lighten-1 yellow-text text-lighten-1">large</h1>
+    <h1 class="hide-on-large-only hide-on-small-only indigo lighten-2 yellow-text text-lighten-2">medium</h1>
+    <h1 class="hide-on-med-and-up indigo lighten-3 yellow-text text-lighten-3">thin</h1>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="{{ asset('JS/custom.js') }}"></script>
+
+{% block body %}
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>

@@ -26,9 +26,12 @@ class UserController extends AbstractController
     public function index(Request $request)
     {
 
+        $user = $this->getUser();
+        $username = $user -> getEmail();
 
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
+            'username' => $username,
         ]);
     }
 
@@ -37,6 +40,9 @@ class UserController extends AbstractController
      */
     public function register(Request $request)
     {
+        $user = $this->getUser();
+        $username = $user -> getEmail();
+
         $user = new User();
 
         $form = $this->createForm(RegisterType::class)
@@ -58,9 +64,12 @@ class UserController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
+
+
         return $this->render('user/register.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
+            'username' => $username,
         ]);
     }
 }
