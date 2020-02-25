@@ -12,8 +12,13 @@ class UserSpaceController extends AbstractController
      */
     public function index()
     {
+
+        $user = $this->getUser();
+        $username = $user -> getEmail();
+
         return $this->render('user_space/index.html.twig', [
             'controller_name' => 'UserSpaceController',
+            'user' => $username,
         ]);
     }
 }
