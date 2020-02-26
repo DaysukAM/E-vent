@@ -6,6 +6,7 @@ namespace App\Controller\Backoffice;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,17 +22,31 @@ class UserController extends AbstractController
         $this->passwordEncoder = $passwordEncoder;
     }
     /**
-     * @Route("/", name="index")
+     * @Route("/myinfo", name="myinfo")
      */
     public function index(Request $request)
     {
 
         $user = $this->getUser();
-        $username = $user -> getEmail();
 
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-            'username' => $username,
+
+        $form = $this->createForm(RegisterType::class, $user)
+            ->add('password',HiddenType::class)
+            ->add('save', SubmitType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user = $form->getData();
+
+
+            $entitymanager = $this->getDoctrine()->getManager();
+            $entitymanager->persist($user);
+            $entitymanager->flush();
+        }
+
+        return $this->render('user/info.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
@@ -40,8 +55,6 @@ class UserController extends AbstractController
      */
     public function register(Request $request)
     {
-        $user = $this->getUser();
-        $username = $user -> getEmail();
 
         $user = new User();
 
@@ -56,7 +69,7 @@ class UserController extends AbstractController
                 $user,
                 $form->get("password")->getData()
             ));
-            var_dump($user);
+
             $entitymanager = $this->getDoctrine()->getManager();
             $entitymanager->persist($user);
             $entitymanager->flush();
@@ -69,7 +82,6 @@ class UserController extends AbstractController
         return $this->render('user/register.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
-            'username' => $username,
         ]);
     }
 }

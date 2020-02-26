@@ -1,0 +1,10 @@
+{% if app.user %}
+    {% set base ='baseback.html.twig' %}
+{% else %}
+    {% set base = 'base.html.twig'%}
+{% endif %}
+    {% extends base %}
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}

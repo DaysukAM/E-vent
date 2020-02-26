@@ -22,14 +22,12 @@ class EventController extends AbstractController
     public function index()
     {
         $user = $this->getUser();
-        $username = $user -> getEmail();
 
-        $allEvent = $this->getDoctrine()->getRepository(Event::class);
-        $Events = $allEvent->findAll();
+        $allUserEvent = $this->getDoctrine()->getRepository(Event::class);
+        $UserEvents = $allUserEvent->findBy(['user' => $user]);
 
         return $this->render('/event/index.html.twig', [
-            'Events' => $Events,
-            'username' => $username,
+            'UserEvents' => $UserEvents,
         ]);
     }
 
@@ -50,9 +48,6 @@ class EventController extends AbstractController
             ->add('isOn', HiddenType::class,[
                 'data' => '0',
             ])
-            ->add('user', HiddenType::class, [
-                'data' => $user,
-            ])
             ->add('save', SubmitType::class)
             ->getForm();
 
@@ -62,6 +57,7 @@ class EventController extends AbstractController
 
 
             $event = $form->getData();
+            $event->setUser($user);
 
             $entitymanager = $this->getDoctrine()->getManager();
             $entitymanager->persist($event);
@@ -71,7 +67,6 @@ class EventController extends AbstractController
         }
         return $this->render('event/create.html.twig', [
             'form' => $form->createView(),
-            'username' => $username,
             'userid' => $userid,
         ]);
     }
@@ -82,7 +77,6 @@ class EventController extends AbstractController
     public function edit(int $id, Request $request)
     {
         $user = $this->getUser();
-        $username = $user -> getEmail();
         $Event = $this->getDoctrine()->getRepository(Event::class)->find($id);
 
 
@@ -108,7 +102,6 @@ class EventController extends AbstractController
         return $this->render('/event/edit.html.twig', [
             'form' => $form->createView(),
             'Event' => $Event,
-            'username' => $username,
         ]);
     }
 

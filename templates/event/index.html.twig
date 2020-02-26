@@ -5,18 +5,20 @@
 {% block body %}
 
 
-     {% for event in Events %}
-<table>
-    <tr>
-        <td>
-    {{ event.name }}
-        </td>
-        <td>
-        <a href="{{ path ('event_edit',{'id':event.id}) }}">Modifier</a>
-        </td>
-    </tr>
-</table>
-     {% endfor %}
-
-    <a href="{{ path ('event_create')}}">Créer</a>
+    {% for event in UserEvents %}
+        <div class="container">
+            <div class="row">
+            <div class="col s6 m6 l6">
+                        {{ event.name }}
+            </div>
+                <div class="col s6 m6 l6">
+                        <a href="{{ path ('event_edit',{'id':event.id}) }}">Modifier</a>
+                        <a href="{{ path ('event_edit',{'id':event.id}) }}">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="container">
+    <a href="{{ path ('event_create')}}">Créer un évenement</a>
+    </div>
 {% endblock %}

@@ -26,11 +26,14 @@
             </a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{{ path('event') }}">Mes évenements</a> </li>
-            <li><a href="#">Mon compte</a> </li>
+            <li><a href="{{ path('myinfo')}}">Mon compte</a> </li>
             <li><a href="#" class="btn-floating red darken-4 z-depth-0">
                     <i class="material-icons">account_circle</i>
                 </a>
-                <span>{{ username }}</span>
+                <span>{{ app.user.username }}</span>
+            </li>
+            <li>
+                <a class="btn red waves-effect waves-light" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
         </ul>
         </div>
