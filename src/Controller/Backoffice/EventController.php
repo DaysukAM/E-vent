@@ -6,12 +6,13 @@ use App\Entity\Event;
 use App\Entity\User;
 use App\Form\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\Form\Form;
 
 class EventController extends AbstractController
 {
@@ -48,6 +49,10 @@ class EventController extends AbstractController
             ->add('isOn', HiddenType::class,[
                 'data' => '0',
             ])
+            ->add('file',FileType::class, [
+                'mapped' => false,
+                'label' => 'file to upload'
+        ])
             ->add('save', SubmitType::class)
             ->getForm();
 
@@ -55,10 +60,21 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $file = $request->files ->get('form')['file'];
+
+            $uploads_directory = $this ->getParameter('uploads_directory');
+
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file -> move(
+                $uploads_directory,
+                $filename
+            );
 
             $event = $form->getData();
             $event->setUser($user);
 
+            $event-> setImage($filename);
             $entitymanager = $this->getDoctrine()->getManager();
             $entitymanager->persist($event);
             $entitymanager->flush();
