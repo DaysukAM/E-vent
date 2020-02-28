@@ -74,7 +74,7 @@ class UserController extends AbstractController
             $entitymanager->persist($user);
             $entitymanager->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('lobby');
         }
 
 

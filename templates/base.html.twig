@@ -21,21 +21,12 @@
 
             <img class="logo-event " src="{{ asset('img/logo-event.png') }}"/>
         </a>
-        <a href="#" class="sidenav-trigger" data-target="mobile-links">
-            <i class="material-icons">menu</i>
-        </a>
         <ul class="right hide-on-med-and-down">
+            <li><a href="{{ path('lobby') }}">Acceuil</a> </li>
             <li><a class="btn red waves-effect waves-light" href="{{ path('app_login') }}">Connexion</a> </li>
         </ul>
     </div>
 </nav>
-
-<ul class="sidenav" id="mobile-links">
-    <li><a href="#">Mon compte
-            <i class="material-icons right">account_circle</i>
-        </a> </li>
-    <li><a href="#">Mes évenements</a> </li>
-</ul>
 
 <div class="container">
     <h1 class="hide-on-med-and-down indigo lighten-1 yellow-text text-lighten-1">large</h1>

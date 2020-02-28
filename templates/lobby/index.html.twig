@@ -9,23 +9,32 @@
 
 {% block body %}
 
-
+    {% set row = true %}
     {% for event in Events %}
+        {% if row %}
         <div class="container">
-            <div class="row">
-                <div class="col s6 m6 l6">
-                    {{ event.name }}
-                    {{ event.image }}
-                </div>
-                <div class="col s6 m6 l6">
-                    <a class="btn " href="{{ path ('event_edit',{'id':event.id}) }}">
-                        <span>S'inscrire</span>
-                        <i class="material-icons right">assignment</i>
-                    </a>
 
+            <div class="row">
+                {% endif %}
+                <div class="event-display col s12 m12 l6 ">
+                    <a style="background-image: url({{ asset('image_event/') ~ event.image }})" class="btn waves-effect waves-light event-btn" href="{{ path ('event_edit',{'id':event.id}) }}">
+                        <div id="event-title" class="event-title {{event.color}} center ">{{ event.name }}</div>
+                        <div class="inscription-div {{event.color}} right">
+                            <br>
+                        <i class="inscription-icon material-icons center">assignment</i>
+                        </div>
+                        <div id="bottom-color" class="bottom-color {{event.color}} "></div>
+                    </a>
                 </div>
+                {% if row %}
+
+            {% set row = false %}
+            {% else %}
             </div>
-        </div>
+                </div>
+                {% set row = true %}
+            {% endif %}
+
     {% endfor %}
 
 {% endblock %}

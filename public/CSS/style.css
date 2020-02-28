@@ -1,3 +1,6 @@
+html,body{
+    background-color: #e6e6e6;
+}
 .logo-event{
     padding: 5px;
 width: 200px;
@@ -17,4 +20,56 @@ width: 200px;
     -o-transform:skew(30deg);
     transform:skew(30deg);
 }
+.event-image{
+    width: 100%;
+    position: relative;
+    transition: 1s;
 
+}
+.event-image:hover{
+    transition: 1s;
+    opacity: 30%;
+}
+.event-btn{
+    width: 80%;
+    height: 200px;
+    padding: 0;
+    border: 10px #0D47A1;
+    border-radius: 10px;
+    background-size: 120%;
+    background-position: center;
+    position: relative;
+}
+.event-display{
+    border: 10px #0D47A1;
+    border-radius: 10px;
+}
+.inscription-div{
+    font-size: 200% !important;
+    width: 0%;
+    height: 80%;
+    transition: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+.inscription-icon{
+    font-size: 200% !important;
+}
+.event-title{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.bottom-color{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.event-btn:hover > .inscription-div {
+    width: 40%;
+}
+.event-btn:hover{
+    opacity: 80%;
+}
