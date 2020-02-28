@@ -10,23 +10,50 @@
 
             <div class="container">
 
-            <div class="row">
+            <div class="event-edit-row row grey lighten-4">
 
-        <div class="event-display col s10 m10 l8 ">
+        <div class="event-display col s8 m8 l7 ">
             <a style="background-image: url({{ asset('image_event/') ~ event.image }})" class="btn waves-effect waves-light event-btn" href="{{ path ('event_edit',{'id':event.id}) }}">
                 <div id="event-title" class="event-title {{event.color}} center ">{{ event.name }}</div>
-                <div class="inscription-div {{event.color}} right">
-                    <br>
-                    <i class="inscription-icon material-icons center">assignment</i>
-                </div>
                 <div id="bottom-color" class="bottom-color {{event.color}} "></div>
             </a>
         </div>
-                <div class="col s2 m2 l2 ">
-                    <a href="{{ path ('event_edit',{'id':event.id}) }}">Modifier</a>
+                <div class="date col s4 m4 l2 ">
+                    <br><br>
+                    {% if event.isOn == 1 %}
+                        <h4 class="green-text">Activé</h4>
+                    {% else %}
+                        <h4 class="red-text">Désactivé</h4>
+                        {% endif %}
                 </div>
-                    <div class="col s2 m2 l2 ">
-                    <a href="{{ path ('event_edit',{'id':event.id}) }}">Supprimer</a>
+                <div class="event-date col s4 m4 l2">
+                    <h4>Date de création:</h4>
+                </div>
+                <div class="edit-button col s4 m4 l1 ">
+                    <br class="hide-on-med-and-down">
+                    <a href="{{ path ('event_edit',{'id':event.id}) }}" class="btn blue skew">
+                        <div class="anti-skew">
+                            <i class="material-icons">edit</i>
+                        </div>
+                    </a>
+                </div>
+                    <div class="col s4 m4 l1 right">
+                        <br>
+                    <a href="{{ path ('event_edit',{'id':event.id}) }}" class="btn red skew">
+                        <div class="anti-skew">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col s4 m4 l1 right">
+                    <br>
+                    <a href="{{ path ('event_edit',{'id':event.id}) }}" class="btn-floating green">
+
+                            <i class="material-icons center">add</i>
+
+                    </a>
+
                 </div>
             </div>
             </div>
@@ -35,6 +62,6 @@
     {% endfor %}
     <div class="container">
 
-    <a href="{{ path ('event_create')}}">Créer un évenement</a>
+    <a href="{{ path ('event_create')}}" class="btn">Créer un évenement</a>
     </div>
 {% endblock %}

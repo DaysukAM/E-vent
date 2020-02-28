@@ -12,7 +12,12 @@ width: 200px;
     transform:skew(-30deg);
     padding-left: 20px;
     padding-right: 20px;
-
+}
+.skew{
+    -webkit-transform:skew(-30deg);
+    -moz-transform:skew(-30deg);
+    -o-transform:skew(-30deg);
+    transform:skew(-30deg);
 }
 .anti-skew {
     -webkit-transform:skew(30deg);
@@ -31,7 +36,7 @@ width: 200px;
     opacity: 30%;
 }
 .event-btn{
-    width: 80%;
+    width: 100%;
     height: 200px;
     padding: 0;
     border: 10px #0D47A1;
@@ -68,8 +73,14 @@ width: 200px;
     border-bottom-left-radius: 10px;
 }
 .event-btn:hover > .inscription-div {
-    width: 40%;
+    width: 30%;
 }
 .event-btn:hover{
     opacity: 80%;
+}
+.event-edit-row{
+    border-radius: 10px;
+}
+.event-date{
+    height: 100%;
 }
