@@ -39,7 +39,6 @@ class EventController extends AbstractController
     public function create(Request $request)
     {
         $user = $this->getUser();
-        $username = $user -> getEmail();
         $userid = $user -> getId();
         $event = new Event();
 
@@ -49,11 +48,14 @@ class EventController extends AbstractController
             ->add('isOn', HiddenType::class,[
                 'data' => '0',
             ])
+            ->add('color', TextType::class)
             ->add('file',FileType::class, [
                 'mapped' => false,
                 'label' => 'file to upload'
         ])
-            ->add('save', SubmitType::class)
+            ->add('save', SubmitType::class, [
+                'label' => "Créer !"
+        ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -92,15 +94,22 @@ class EventController extends AbstractController
      */
     public function edit(int $id, Request $request)
     {
-        $user = $this->getUser();
+
         $Event = $this->getDoctrine()->getRepository(Event::class)->find($id);
 
 
 
         $form = $this->createFormBuilder($Event)
             ->add('name', TextType::class)
-            ->add('isOn', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('isOn', HiddenType::class)
+            ->add('color', TextType::class)
+            ->add('file',FileType::class, [
+                'mapped' => false,
+                'label' => 'file to upload'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => "Créer !"
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -119,6 +128,19 @@ class EventController extends AbstractController
             'form' => $form->createView(),
             'Event' => $Event,
         ]);
+    }
+    /**
+     * @Route("/event/delet/{id}", name="event_delete")
+     */
+    public function delete($id)
+    {
+
+        $event = $this->getDoctrine()->getRepository(Event::class)->find($id);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($event);
+        $entityManager->flush();
+        return $this->redirectToRoute('event');
     }
 
 

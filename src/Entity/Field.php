@@ -22,7 +22,12 @@ class Field
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="fields")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FieldType", inversedBy="fields")
      */
     private $type;
 
@@ -43,12 +48,24 @@ class Field
         return $this;
     }
 
-    public function getType(): ?string
+    public function getEvent(): ?event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?event $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getType(): ?fieldType
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?fieldType $type): self
     {
         $this->type = $type;
 

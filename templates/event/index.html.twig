@@ -14,8 +14,8 @@
 
         <div class="event-display col s8 m8 l7 ">
             <a style="background-image: url({{ asset('image_event/') ~ event.image }})" class="btn waves-effect waves-light event-btn" href="{{ path ('event_edit',{'id':event.id}) }}">
-                <div id="event-title" class="event-title {{event.color}} center ">{{ event.name }}</div>
-                <div id="bottom-color" class="bottom-color {{event.color}} "></div>
+                <div id="event-title" class="event-title center" style="background-color:#{{event.color}}">{{ event.name }}</div>
+                <div id="bottom-color" class="bottom-color" style="background-color:#{{event.color}}"></div>
             </a>
         </div>
                 <div class="date col s4 m4 l2 ">
@@ -39,7 +39,7 @@
                 </div>
                     <div class="col s4 m4 l1 right">
                         <br>
-                    <a href="{{ path ('event_edit',{'id':event.id}) }}" class="btn red skew">
+                    <a href="{{ path ('event_delete',{'id':event.id}) }}" class="btn red skew">
                         <div class="anti-skew">
                             <i class="material-icons">delete</i>
                         </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col s4 m4 l1 right">
                     <br>
-                    <a href="{{ path ('event_edit',{'id':event.id}) }}" class="btn-floating green">
+                    <a href="{{ path ('field',{'id':event.id}) }}" class="btn-floating green">
 
                             <i class="material-icons center">add</i>
 

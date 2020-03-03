@@ -3,9 +3,30 @@
 {% block title %}Hello EventController!{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="row">
 
-
-    {{ form(form) }}
-
-    <a href="{{ path ('event')}}">Retour</a>
+            <div class="col s12 m8 l8">
+                {{ form_start(form) }}
+                <label for="inputEmail"><h6>Nom</h6></label>
+                <div class="grey lighten-1 parallelogramme">
+                    {{ form_widget(form.name, {'attr': {'class': 'anti-skew'}}) }}
+                </div>
+                <label for="inputEmail"><h6>Couleur</h6></label>
+                <div class="parallelogramme">
+                    {{ form_widget(form.color, {'attr': {'class': 'jscolor'}}) }}
+                </div>
+                <label for="inputEmail"><h6>Image de l'évènement</h6></label>
+                <div class="grey lighten-1 parallelogramme">
+                    {{ form_widget(form.file, {'attr': {'class': 'anti-skew'}}) }}
+                </div>
+                <br>
+                {{ form_widget(form.save, {'attr': {'class': 'btn red darken-4'}}) }}
+                {{ form_end(form) }}
+                <br>
+                <a class="btn black" href="{{ path ('event')}}">Retour</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
 {% endblock %}
