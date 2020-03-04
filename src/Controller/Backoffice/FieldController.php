@@ -3,7 +3,11 @@
 namespace App\Controller\Backoffice;
 
 
+use App\Entity\Event;
 use App\Entity\Field;
+use App\Form\FieldType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,22 +21,50 @@ class FieldController extends AbstractController
     {
         $allEventFields = $this->getDoctrine()->getRepository(Field::class);
         $EventFields = $allEventFields->findBy(['event' => $id]);
+
+        $event = $this->getDoctrine()->getRepository(Event::class)->find($id);
+
         return $this->render('field/index.html.twig', [
             'controller_name' => 'FieldController',
-            'EventFields' => $EventFields
+            'EventFields' => $EventFields,
+            'event'=>$event
         ]);
     }
+
     /**
-     * @Route("/event/field/add/{id}", name="field")
+     * @Route("/event/field/add/{id}", name="field_create")
      */
     public function create(int $id, Request $request)
     {
-        $field = new Field;
-        $allEventFields = $this->getDoctrine()->getRepository(Field::class);
-        $EventFields = $allEventFields->findBy(['event' => $id]);
-        return $this->render('field/index.html.twig', [
+
+        $event = $this->getDoctrine()->getRepository(Event::class)->find($id);
+
+        $field = new Field();
+        $form = $this->createFormBuilder($field)
+            ->add('name')
+            ->add('type', ChoiceType::Class, [
+                'choices'=>[
+                    'text'=>'1',
+                    'phone'=>'2',
+                ],
+            ])
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $field = $form->getData();
+            $field->setEvent($event);
+
+            $entitymanager = $this->getDoctrine()->getManager();
+            $entitymanager->persist($field);
+            $entitymanager->flush();
+
+        }
+        return $this->render('field/create.html.twig', [
             'controller_name' => 'FieldController',
-            'EventFields' => $EventFields
+            'form' => $form->createView(),
         ]);
     }
 }

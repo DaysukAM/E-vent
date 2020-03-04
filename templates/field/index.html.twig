@@ -5,5 +5,7 @@
 {% block body %}
     {% for field in EventFields %}
 <h1>{{ field.name }}</h1>
+
+<a href="{{ path ('field_create',{'id':event.id}) }}" class="btn-floating green">
     {% endfor %}
 {% endblock %}
