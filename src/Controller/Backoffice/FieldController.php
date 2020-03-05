@@ -6,6 +6,8 @@ namespace App\Controller\Backoffice;
 use App\Entity\Event;
 use App\Entity\Field;
 use App\Form\FieldType;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,11 +44,11 @@ class FieldController extends AbstractController
         $field = new Field();
         $form = $this->createFormBuilder($field)
             ->add('name')
-            ->add('type', ChoiceType::Class, [
-                'choices'=>[
-                    'text'=>'1',
-                    'phone'=>'2',
-                ],
+            ->add('type', EntityType::Class, [
+                'class' => \App\Entity\FieldType::class,
+                'choice_label' => 'libelle'
+
+
             ])
             ->add('save', SubmitType::class)
             ->getForm();

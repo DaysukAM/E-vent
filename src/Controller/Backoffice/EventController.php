@@ -45,6 +45,7 @@ class EventController extends AbstractController
         $form = $this->createFormBuilder($event)
 
             ->add('name', TextType::class)
+            ->add('description', TextType::class)
             ->add('isOn', HiddenType::class,[
                 'data' => '0',
             ])
@@ -101,6 +102,7 @@ class EventController extends AbstractController
 
         $form = $this->createFormBuilder($Event)
             ->add('name', TextType::class)
+            ->add('description', TextType::class)
             ->add('isOn', HiddenType::class)
             ->add('color', TextType::class)
             ->add('file',FileType::class, [

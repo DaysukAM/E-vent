@@ -8,15 +8,19 @@
 
 <div class="col s12 m8 l8">
     {{ form_start(form) }}
-    <label for="inputEmail"><h6>Nom</h6></label>
+    <label><h6>Nom</h6></label>
     <div class="grey lighten-1 parallelogramme">
         {{ form_widget(form.name, {'attr': {'class': 'anti-skew'}}) }}
     </div>
-    <label for="inputEmail"><h6>Couleur</h6></label>
+    <label><h6>Description</h6></label>
+    <div class="grey lighten-1 parallelogramme">
+        {{ form_widget(form.description, {'attr': {'class': 'anti-skew'}}) }}
+    </div>
+    <label><h6>Couleur</h6></label>
     <div class="parallelogramme">
         {{ form_widget(form.color, {'attr': {'class': 'jscolor'}}) }}
     </div>
-    <label for="inputEmail"><h6>Image de l'évènement</h6></label>
+    <label><h6>Image de l'évènement</h6></label>
     <div class="grey lighten-1 parallelogramme">
         {{ form_widget(form.file, {'attr': {'class': 'anti-skew'}}) }}
     </div>
