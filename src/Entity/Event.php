@@ -48,6 +48,11 @@ class Event
      */
     private $fields;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $Description;
+
     public function __construct()
     {
         $this->fields = new ArrayCollection();
@@ -145,6 +150,18 @@ class Event
                 $field->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): self
+    {
+        $this->Description = $Description;
 
         return $this;
     }

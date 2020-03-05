@@ -18,12 +18,12 @@
                 {% endif %}
                 <div class="event-display col s12 m12 l6 ">
                     <a style="background-image: url({{ asset('image_event/') ~ event.image }})" class="btn waves-effect waves-light event-btn" href="{{ path ('event_edit',{'id':event.id}) }}">
-                        <div id="event-title" class="event-title {{event.color}} center ">{{ event.name }}</div>
-                        <div class="inscription-div {{event.color}} right">
+                        <div id="event-title" class="event-title center" style="background-color:#{{event.color}}">{{ event.name }}</div>
+                        <div class="inscription-div right" style="background-color:#{{event.color}}">
                             <br>
                         <i class="inscription-icon material-icons center">assignment</i>
                         </div>
-                        <div id="bottom-color" class="bottom-color {{event.color}} "></div>
+                        <div id="bottom-color" class="bottom-color" style="background-color:#{{event.color}}"></div>
                     </a>
                 </div>
                 {% if row %}
