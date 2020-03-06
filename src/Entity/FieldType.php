@@ -28,6 +28,11 @@ class FieldType
      */
     private $fields;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->fields = new ArrayCollection();
@@ -77,6 +82,18 @@ class FieldType
                 $field->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

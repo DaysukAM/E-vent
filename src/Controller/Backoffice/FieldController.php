@@ -46,7 +46,7 @@ class FieldController extends AbstractController
             ->add('name')
             ->add('type', EntityType::Class, [
                 'class' => \App\Entity\FieldType::class,
-                'choice_label' => 'libelle'
+                'choice_label' => 'name'
 
 
             ])
@@ -63,6 +63,9 @@ class FieldController extends AbstractController
             $entitymanager->persist($field);
             $entitymanager->flush();
 
+            return $this->redirectToRoute('field',[
+                'id'=> $id
+            ]);
         }
         return $this->render('field/create.html.twig', [
             'controller_name' => 'FieldController',

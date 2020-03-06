@@ -6,5 +6,20 @@
     {% extends base %}
 
 {% block body %}
-    {{ form(form) }}
+    <div class="container">
+    <div class="row">
+
+    <div class="col s12 m8 l8">
+    {{ form_start(form) }}
+    <label><h6>E-mail</h6></label>
+    <div class="grey lighten-1 parallelogramme">
+        {{ form_widget(form.email, {'attr': {'class': 'anti-skew'}}) }}
+    </div>
+        {{ form_widget(form.password) }}
+        <br>
+        {{ form_widget(form.save, {'attr': {'class': 'btn red darken-4'}}) }}
+    {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
 {% endblock %}
