@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Entity\User;
 use App\Form\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -103,14 +104,19 @@ class EventController extends AbstractController
         $form = $this->createFormBuilder($Event)
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('isOn', HiddenType::class)
+            ->add('isOn', ChoiceType::class, [
+                'choices'  => [
+                    'Activé' => 1,
+                    'Désactivé' => 0,
+                ],
+            ])
             ->add('color', TextType::class)
             ->add('file',FileType::class, [
                 'mapped' => false,
                 'label' => 'file to upload'
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Créer !"
+                'label' => "Modifier !"
             ])
             ->getForm();
 
